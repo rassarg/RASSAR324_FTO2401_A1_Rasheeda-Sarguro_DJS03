@@ -254,9 +254,12 @@ function setupEventListeners() {
     });
 }
 // Call functions to initialize the application
-renderBooks();
-renderGenres();
-renderAuthors();
-setTheme();
-showMoreButton();
-setupEventListeners();
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("scrips.js and the DOM are loaded");
+  renderBooks();
+  renderGenres();
+  renderAuthors();
+  setTheme();
+  showMoreButton();
+  setupEventListeners();
+});
