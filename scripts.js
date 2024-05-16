@@ -52,21 +52,19 @@ function renderAuthors() {
 }
 // Function to set theme
 function setTheme() {
-  if (
+  const prefersDarkMode =
     window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    document.querySelector("[data-settings-theme]").value = "night";
-    document.documentElement.style.setProperty("--color-dark", "255, 255, 255");
-    document.documentElement.style.setProperty("--color-light", "10, 10, 20");
-  } else {
-    document.querySelector("[data-settings-theme]").value = "day";
-    document.documentElement.style.setProperty("--color-dark", "10, 10, 20");
-    document.documentElement.style.setProperty(
-      "--color-light",
-      "255, 255, 255"
-    );
-  }
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const theme = prefersDarkMode ? "night" : "day";
+  document.querySelector("[data-settings-theme]").value = theme;
+  document.documentElement.style.setProperty(
+    "--color-dark",
+    prefersDarkMode ? "255, 255, 255" : "10, 10, 20"
+  );
+  document.documentElement.style.setProperty(
+    "--color-light",
+    prefersDarkMode ? "10, 10, 20" : "255, 255, 255"
+  );
 }
 // Function to update books when "Show more" button is clicked
 function showMoreButton() {
