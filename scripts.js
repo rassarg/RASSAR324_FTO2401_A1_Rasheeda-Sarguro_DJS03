@@ -116,15 +116,18 @@ function setupEventListeners() {
   selectors.dataSearchCancel.addEventListener("click", () => {
     selectors.dataSearchOverlay.open = false;
   });
+
   // Opening search modal
   selectors.dataHeaderSearch.addEventListener("click", () => {
     selectors.dataSearchOverlay.open = true;
     selectors.dataSearchTitle.focus();
   });
+
   // Search modal drop down list of book title / author / genre
   selectors.dataListClose.addEventListener("click", () => {
     selectors.dataListActive.open = false;
   });
+
   // Searching books
   selectors.dataSearchForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -179,15 +182,18 @@ function setupEventListeners() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     selectors.dataSearchOverlay.open = false;
   });
+
   // Canceling theme modal
   selectors.dataSettingsCancel.addEventListener("click", () => {
     selectors.dataSettingsOverlay.open = false;
   });
+
   // Opening theme modal
   selectors.dataHeaderSettings.addEventListener("click", () => {
     selectors.dataSettingsOverlay.open = true;
   });
-  // Changing theme
+
+  // Changing the theme
   selectors.dataSettingsForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -207,7 +213,8 @@ function setupEventListeners() {
     }
     selectors.dataSettingsOverlay.open = false;
   });
-  // Show more button
+
+  // 'Show more' button
   selectors.listButton.addEventListener("click", () => {
     const fragment = document.createDocumentFragment();
     for (const { author, id, image, title } of matches.slice(
@@ -229,7 +236,8 @@ function setupEventListeners() {
     selectors.dataListItems.appendChild(fragment);
     page += 1;
   });
-  // Book preview
+
+  // Book previews
   selectors.dataListItems.addEventListener("click", (event) => {
     const pathArray = Array.from(event.path || event.composedPath());
     let active = null;
@@ -257,6 +265,7 @@ function setupEventListeners() {
     }
   });
 }
+
 // ******************* INITIALIZE APPLICATION ******************* //
 
 document.addEventListener("DOMContentLoaded", function () {
