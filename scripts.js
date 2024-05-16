@@ -3,7 +3,7 @@ import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js";
 let page = 1;
 let matches = books;
 
-// ******** QUERY SELECTORS ******* //
+// ******************** QUERY SELECTORS ******************* //
 
 const selectors = {
   // Book List
@@ -30,7 +30,9 @@ const selectors = {
   dataSettingsForm: document.querySelector("[data-settings-form]"),
 };
 
-// Function to render books
+// ******************* FUNCTIONS ******************* //
+
+// Books
 function renderBooks() {
   const starting = document.createDocumentFragment();
   for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
@@ -48,7 +50,7 @@ function renderBooks() {
   }
   selectors.dataListItems.appendChild(starting);
 }
-// Function to render genres
+// Genres
 function renderGenres() {
   const genreHtml = document.createDocumentFragment();
   const firstGenreElement = document.createElement("option");
@@ -63,7 +65,7 @@ function renderGenres() {
   }
   selectors.dataSearchGenres.appendChild(genreHtml);
 }
-// Function to render authors
+// Authors
 function renderAuthors() {
   const authorsHtml = document.createDocumentFragment();
   const firstAuthorElement = document.createElement("option");
@@ -78,7 +80,7 @@ function renderAuthors() {
   }
   selectors.dataSearchAuthors.appendChild(authorsHtml);
 }
-// Function to set theme
+// Set theme
 function setTheme() {
   const prefersDarkMode =
     window.matchMedia &&
@@ -94,7 +96,7 @@ function setTheme() {
     prefersDarkMode ? "10, 10, 20" : "255, 255, 255"
   );
 }
-// Function to update books when "Show more" button is clicked
+// Update books list when "Show more" button is clicked
 function showMoreButton() {
   const remaining = matches.length - page * BOOKS_PER_PAGE;
   selectors.listButton.innerText = "Show more";
@@ -106,13 +108,15 @@ function showMoreButton() {
   selectors.listButton.appendChild(document.createTextNode("Show more"));
   selectors.listButton.appendChild(remainingSpan);
 }
-// Function to setup event listeners
+
+// ******************* EVENT LISTENERS ******************* //
+
 function setupEventListeners() {
-  // Canceling the search modal
+  // Canceling search modal
   selectors.dataSearchCancel.addEventListener("click", () => {
     selectors.dataSearchOverlay.open = false;
   });
-  // Opening the search modal
+  // Opening search modal
   selectors.dataHeaderSearch.addEventListener("click", () => {
     selectors.dataSearchOverlay.open = true;
     selectors.dataSearchTitle.focus();
@@ -175,11 +179,11 @@ function setupEventListeners() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     selectors.dataSearchOverlay.open = false;
   });
-  // Canceling the theme modal
+  // Canceling theme modal
   selectors.dataSettingsCancel.addEventListener("click", () => {
     selectors.dataSettingsOverlay.open = false;
   });
-  // Opening the theme modal
+  // Opening theme modal
   selectors.dataHeaderSettings.addEventListener("click", () => {
     selectors.dataSettingsOverlay.open = true;
   });
@@ -253,7 +257,8 @@ function setupEventListeners() {
     }
   });
 }
-// Call functions to initialize the application
+// ******************* INITIALIZE APPLICATION ******************* //
+
 document.addEventListener("DOMContentLoaded", function () {
   console.log("scrips.js and the DOM are loaded");
   renderBooks();
